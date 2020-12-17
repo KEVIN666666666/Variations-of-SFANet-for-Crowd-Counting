@@ -15,7 +15,7 @@ print(torch.cuda.is_available())
 
 
 device = torch.device('cuda')
-save_path = 'checkpoint_best_MSFANet_B.pth' # Path to the trained weights.
+save_path = '../ShanghaitechWeights/checkpoint_best_MSFANet_B.pth' # Path to the trained weights.
 model = M_SFANet.Model().to(device) # Build the model.
 checkpoint = torch.load(save_path)
 model.load_state_dict(checkpoint['model'])
