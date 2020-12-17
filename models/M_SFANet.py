@@ -130,7 +130,13 @@ class Model(nn.Module):
         return dmp_out, amp_out
 
     def load_vgg(self):
-        state_dict = model_zoo.load_url('https://download.pytorch.org/models/vgg16_bn-6c64b313.pth')
+        try:
+            print("load vgg 16 from local")
+            state_dict = torch.load("../../vgg16_bn-6c64b313.pth")
+        except:
+            print("load vgg 16 from url")
+            state_dict = model_zoo.load_url('https://download.pytorch.org/models/vgg16_bn-6c64b313.pth')
+            
         old_name = [0, 1, 3, 4, 7, 8, 10, 11, 14, 15, 17, 18, 20, 21, 24, 25, 27, 28, 30, 31, 34, 35, 37, 38, 40, 41]
         new_name = ['1_1', '1_2', '2_1', '2_2', '3_1', '3_2', '3_3', '4_1', '4_2', '4_3', '5_1', '5_2', '5_3']
         new_dict = {}
